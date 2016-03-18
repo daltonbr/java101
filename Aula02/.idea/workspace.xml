@@ -61,10 +61,6 @@
             <state vertical-scroll-proportion="0.72727275">
               <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding>
-                <element signature="e#622#623#0" expanded="true" />
-                <element signature="e#655#656#0" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#718#719#0" expanded="true" />
                 <element signature="e#1029#1030#0" expanded="true" />
                 <element signature="e#1065#1066#0" expanded="true" />
               </folding>
@@ -112,7 +108,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -125,49 +121,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aula02" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="RunManager" selected="Application.MainEstatico">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
@@ -466,7 +420,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="702" extended-state="1" />
+    <frame x="0" y="23" width="1280" height="702" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -557,6 +511,44 @@
     <entry file="file://$PROJECT_DIR$/src/com/dalton/aula02/MainEstatico.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dalton/aula02/TesteEstatico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+          <folding>
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#604#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dalton/aula02/Cachorro.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="e#1065#1066#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dalton/aula02/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dalton/aula02/MainEstatico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -578,10 +570,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#718#719#0" expanded="true" />
             <element signature="e#1029#1030#0" expanded="true" />
             <element signature="e#1065#1066#0" expanded="true" />
           </folding>
@@ -620,10 +608,6 @@
         <state vertical-scroll-proportion="0.72727275">
           <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding>
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#718#719#0" expanded="true" />
             <element signature="e#1029#1030#0" expanded="true" />
             <element signature="e#1065#1066#0" expanded="true" />
           </folding>
