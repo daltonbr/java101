@@ -67,11 +67,13 @@ public class Country {
         return this.area;
     }
 
+    // conceitualmente "errado" - deveria retornar o tipo borders ( ArrayList<Country> )
+    // e posteriormente em outra funcao passarmos para String
     public String getBorders () {
         StringBuilder output = new StringBuilder();
 
         this.borders.forEach((temp) -> {
-            output.append(temp.getName());
+            output.append(temp.getName() + " ");
         });
 
         return output.toString();

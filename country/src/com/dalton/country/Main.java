@@ -81,7 +81,7 @@ public class Main {
         System.out.println(arg.getName() + " borders with: " + arg.getBorders() );
         System.out.println(bol.getName() + " borders with: " + bol.getBorders() );
 //        System.out.println(( printArrayList ( bra.commonBorders(arg) ) ) );
-        System.out.println(printArrayList(bra.commonBorders(arg)) );
+//        System.out.println(printArrayList(bra.commonBorders(arg)) );
 
 
 
