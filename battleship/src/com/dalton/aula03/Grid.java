@@ -20,7 +20,7 @@ public class Grid {
         ArrayList<Cell> _tempArray = new ArrayList<>();
 
         // instantiate all the cells and add them to a temp arraylist
-        for (int i = 0 ; i < _width ; i++ )
+        for (int i = _width -1  ; i >= 0 ; i-- )
         {
             for (int j = 0 ; j < _height ; j++ )
             {
