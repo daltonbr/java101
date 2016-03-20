@@ -1,5 +1,8 @@
 package com.dalton.aula03;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by dalton on 3/18/16.
  */
@@ -7,42 +10,52 @@ package com.dalton.aula03;
 
 public class Grid {
 
-    private int x;
-    private int y;
-    private Cell[][] grid;
-    int [ ] [ ] scores = new int [ 4 ] [ 5 ] ;
+    private int width;
+    private int height;
+    private ArrayList<Cell> board;
 
     // constructor
-    public Grid(int _x, int _y) {
-        for (int i = 0 ; i < _x ; i++ )
-        {
-            for (int j = 0 ; j < _y ; j++ )
-            {
-                Cell newCell = new Cell(_x, _y);
+    public Grid(int _width, int _height) {
 
+        ArrayList<Cell> _tempArray = new ArrayList<>();
+
+        // instantiate all the cells and add them to a temp arraylist
+        for (int i = 0 ; i < _width ; i++ )
+        {
+            for (int j = 0 ; j < _height ; j++ )
+            {
+                Cell newCell = new Cell(i, j);  //each cell receives their own coordinate
+                _tempArray.add(newCell);
             }
         }
 
-        this.setX(_x);
-        this.setY(_y);
-
+        this.setWidth(_width);
+        this.setHeight(_height);
+        this.setBoard(_tempArray);
     }
 
-    public int getX() {
-        return x;
+    // getters and setters
+    public int getWidth() {
+        return width;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setWidth(int _width) {
+        this.width = _width;
     }
 
-    public int getY() {
-        return y;
+    public int getHeight() {
+        return height;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setHeight(int _height) {
+        this.height = _height;
     }
 
+    public ArrayList<Cell> getBoard() {
+        return board;
+    }
 
+    public void setBoard(ArrayList<Cell> board) {
+        this.board = board;
+    }
 }

@@ -2,20 +2,26 @@ package com.dalton.aula03;
 
 public class Cell {
     /**
-     * Created by dalton on 3/18/16.
+     * @author Dalton Lima on 3/18/16.
+     * @param x - cell x coordinate
+     * @param y - cell y coordinate
+     * @param empty - boolean - Indicates wether the cell is empty or not
      */
 
+    // internal variables
     private int x;
     private int y;
     private boolean empty;
 
-    public Cell(int _x, int _y,)
+    // constructor
+    public Cell(int _x, int _y)
     {
         this.setX( _x);
         this.setY( _y);
         this.setEmpty(true);
     }
 
+    // getters and setters
     public int getX() {
         return x;
     }
