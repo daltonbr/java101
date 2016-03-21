@@ -1,6 +1,6 @@
 package com.dalton.country;
 import java.util.ArrayList;
-//import com.dalton.country.Country;
+//import java.util.ArrayList<com.dalton.country.Country>;
 
 /**
  * Created by dalton on 3/15/16.
@@ -73,36 +73,33 @@ public class Country {
         StringBuilder output = new StringBuilder();
 
         this.borders.forEach((temp) -> {
-            output.append(temp.getName() + " ");
+            output.append(temp.getName() );
+            output.append(" ");
         });
 
         return output.toString();
     }
 
-    public boolean equals(Country _outro) {
-        boolean result;
-        result = ((this.getName() == _outro.getName()) && (this.getCapital() == _outro.getCapital())) ?
-                true : false;
+    public boolean equals(Country _others) {
+//        boolean result;
+//        result = ((this.getName() == _others.getName()) && (this.getCapital() == _others.getCapital())) ?
+//                true : false;
+//        return result;
 
-        return result;
+        // all the lines above are change by this single line - so elegant =)
+        return ( (this.getName().equals( _others.getName() ) ) && (this.getCapital().equals( _others.getCapital() ) ) );
+
     }
 
     public ArrayList<Country> commonBorders(Country _other) {
-        ArrayList<Country> output = new ArrayList();
+        if (this.equals(_other) ) return null;  //comparing the same Country;
+
+                ArrayList<Country> output = new ArrayList();
 
         for (Country temp : this.borders ) {
             if ( _other.borders.contains(temp) ) output.add(temp);
         }
         return output;
-    }
-
-    public String arrayListToString() {
-        StringBuilder output = new StringBuilder();
-
-        for (Country temp : this.borders ) {
-            output.append(temp.getName());
-        }
-        return output.toString();
     }
 
 }

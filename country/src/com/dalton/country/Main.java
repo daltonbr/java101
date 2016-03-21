@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by dalton on 3/15/16.
+ * @author Dalton Lima - on 3/15/16.
  */
 public class Main {
     public static void main(String[] args) {
         Country bra = new Country("Brazil", "Brasilia", 8514877);
-        Country bra2 = new Country("Brazil", "Brasilia", 500);
+        Country bra2 = new Country("Brazil", "Brasilia", 500);  // two "Brazil's" for testing purposes
         Country bra3 = new Country("Brazil", "HUE HUE", 1000);
 
         Country arg = new Country("Argentina", "Buenos Aires", 2766890);
@@ -27,7 +27,8 @@ public class Main {
         Country uru = new Country("Uruguay", "Montevideo", 176215);
         Country ven = new Country("Venezuela", "Caracas", 916445);
 
-        System.out.println(bra.getName() + bra.getCapital() + bra.getArea());
+        //outputting data from a Country and comparing for equals Countries.
+        System.out.println("Name: " + bra.getName() + " - Capital: " + bra.getCapital() + " - Area: " + bra.getArea());
         System.out.println (bra.equals(bra2) );   // br == br2  (true)
         System.out.println (bra.equals(bra3) );   // BR != br3  (false)
 
@@ -80,15 +81,28 @@ public class Main {
         System.out.println(bra.getName() + " borders with: " + bra.getBorders() );
         System.out.println(arg.getName() + " borders with: " + arg.getBorders() );
         System.out.println(bol.getName() + " borders with: " + bol.getBorders() );
-//        System.out.println(( printArrayList ( bra.commonBorders(arg) ) ) );
-//        System.out.println(printArrayList(bra.commonBorders(arg)) );
 
+        System.out.print("Common borders between Brazil and Argentina: ");
+        System.out.println(arrayListToString(bra.commonBorders(arg)) );
 
+        System.out.print("Common borders between Brazil and Suriname: ");
+        System.out.println(arrayListToString(bra.commonBorders(sur)) );
 
+        System.out.print("Common borders between Brazil and Brazil: ");
+        System.out.println(arrayListToString(bra.commonBorders(bra)) );
 
-//        System.out.println(chi.getName() + " borders with: " + chi.borders);
-//        System.out.println(col.getName() + " borders with: " + col.borders);
-//        System.out.println(ecu.getName() + " borders with: " + ecu.borders);
-//        System.out.println(fal.getName() + " borders with: " + fal.borders);
+    }
+
+    // this method converts an ArrayList<Country> in a serialized String
+    private static String arrayListToString(ArrayList<Country> _array) {
+        StringBuilder output = new StringBuilder();
+
+        if ( _array == null ) return ("vazio");
+
+        for (Country temp : _array) {
+            output.append(" - ");
+            output.append(temp.getName());
+        }
+        return output.toString();
     }
 }
