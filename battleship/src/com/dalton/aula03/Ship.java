@@ -1,9 +1,6 @@
 package com.dalton.aula03;
 
-/**
- * Created by dalton on 3/18/16.
- */
-
+import java.util.ArrayList;
 
 public class Ship {
     /**
@@ -14,19 +11,36 @@ public class Ship {
      * destroyed is always setted to false at start
      */
 
-
+    // constructor 1
     public Ship(String _name, int[] _position)
     {
         this.setName( _name);
         this.setPosition( _position);
         this.setDestroyed(false);
     }
-    private String name;
-    private boolean destroyed;
-    private int[] position;
 
-    // how to register the cells that the ship stands
+    // constructor 2
+    public Ship()
+    {
+        this.setDestroyed(false);
+    }
+    private String name;                     // take out? why do we need the name?
+    private boolean destroyed;               // register if the ship is destroyed or not
+    private int[] position;                  // take out?
+    private ArrayList<CellShip> bodyCells;   // record which CellShips the Ship is made of
 
+    // fixed size 3
+    public void createShip (int _x, int _y)
+    {
+
+    }
+
+//    public void attackShip(CellShip _cellShip )
+//    {
+//        this.getBodyCells().
+//    }
+
+    // getters and setters
     public String getName() {
         return name;
     }
@@ -49,6 +63,14 @@ public class Ship {
 
     public void setPosition(int[] _position) {
         this.position = _position;
+    }
+
+    public ArrayList<CellShip> getBodyCells() {
+        return bodyCells;
+    }
+
+    public void setBodyCells(ArrayList<CellShip> bodyCells) {
+        this.bodyCells = bodyCells;
     }
 
 }

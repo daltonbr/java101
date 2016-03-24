@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class GameController {
     final int BOARD_WIDTH = 5;  //hardcoded for now
     final int BOARD_HEIGHT = 5;
-    ArrayList<Cell> _cellsArray = new ArrayList<>(); // reference to cells in the board
+    //ArrayList<CellShip> _cellsArray = new ArrayList<>(); // reference to cells in the board
+    CellShip[][] _cellsArray = new CellShip[BOARD_HEIGHT][BOARD_WIDTH];
 
     public void startGame()
     {
@@ -26,15 +27,18 @@ public class GameController {
         int _line = BOARD_HEIGHT - 1;
         System.out.print(_line);  // printing the label
 
-        for (Cell temp : _cellsArray)   // print all the cells in the arraylist
+        for (int i = BOARD_WIDTH-1 ; i>= 0 ; i-- )    // print all the cells in the arraylist
         {
-            if ( _line != temp.getX() )  // detect when we change lines, and jump a line
+            for (int j = 0; j < BOARD_HEIGHT; j++)
             {
-                System.out.println("");
-                System.out.print(_line - 1);  // printing the label
+                if ( _line != _cellsArray[i][j].getX() )  // detect when we change lines, and jump a line
+                {
+                    System.out.println("");
+                    System.out.print(_line - 1);  // printing the label
+                }
+                System.out.print(" - " + _cellsArray[i][j].getX() + _cellsArray[i][j].getY());
+                _line = _cellsArray[i][j].getX();
             }
-            System.out.print(" - " + temp.getX() + temp.getY());
-            _line = temp.getX();
         }
         System.out.println();
         System.out.print(" ");

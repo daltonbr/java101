@@ -13,11 +13,10 @@ public class CellShip extends Cell {
 //        this.setHit(false);
 //    }
 
-
-    public CellShip(int _x, int _y, Ship _ship)
+    public CellShip(int _x, int _y)
     {
         super ( _x, _y);  // superclass Cell
-        this.setShip( _ship );
+        //this.setShip( _ship );
         this.setHit(false);
 
     }
