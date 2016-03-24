@@ -3,37 +3,43 @@ package com.dalton.aula03;
 import java.util.ArrayList;
 
 public class Ship {
+
     /**
      * @author Dalton Lima github @daltonbr - sacinopatinete@gmail.com
-     * @param _name - The name of the ship
-     * @param _position - an array with stores the ship location
      *
      * destroyed is always setted to false at start
      */
 
     // constructor 1
-    public Ship(String _name, int[] _position)
+    public Ship(int _headPosition, Orientation _orientation)
     {
-        this.setName( _name);
-        this.setPosition( _position);
+        if (_orientation.equals(Orientation.HORIZONTAL))
+        {
+
+
+        }
+        else
+        {
+
+        }
+
+        this.setHeadPosition( _headPosition);
         this.setDestroyed(false);
     }
-
     // constructor 2
     public Ship()
     {
         this.setDestroyed(false);
     }
+
+    public enum Orientation {HORIZONTAL, VERTICAL }
+
+    // class variables
     private String name;                     // take out? why do we need the name?
     private boolean destroyed;               // register if the ship is destroyed or not
-    private int[] position;                  // take out?
+    private int headPosition;                  // take out?
     private ArrayList<CellShip> bodyCells;   // record which CellShips the Ship is made of
 
-    // fixed size 3
-    public void createShip (int _x, int _y)
-    {
-
-    }
 
 //    public void attackShip(CellShip _cellShip )
 //    {
@@ -57,12 +63,12 @@ public class Ship {
         this.destroyed = destroyed;
     }
 
-    public int[] getPosition() {
-        return position;
+    public int getHeadPosition() {
+        return headPosition;
     }
 
-    public void setPosition(int[] _position) {
-        this.position = _position;
+    public void setHeadPosition(int _headPosition) {
+        this.headPosition = _headPosition;
     }
 
     public ArrayList<CellShip> getBodyCells() {

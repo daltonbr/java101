@@ -5,12 +5,8 @@ package com.dalton.aula03;
  */
 public class CellShip extends Cell {
 
-//    public CellShip(int _x, int _y, Ship _ship)
+//    public CellShip()
 //    {
-//        this.setX( _x );
-//        this.setY( _y );
-//        this.setShip( _ship );
-//        this.setHit(false);
 //    }
 
     public CellShip(int _x, int _y)

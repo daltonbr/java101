@@ -6,7 +6,10 @@ import java.util.ArrayList;
  * @author dalton on 3/18/16.
  */
 
+
 public class GameController {
+
+    public enum Orientation {HORIZONTAL, VERTICAL }
     final int BOARD_WIDTH = 5;  //hardcoded for now
     final int BOARD_HEIGHT = 5;
     //ArrayList<CellShip> _cellsArray = new ArrayList<>(); // reference to cells in the board
@@ -15,11 +18,127 @@ public class GameController {
     public void startGame()
     {
         Grid newBoard = new Grid(BOARD_WIDTH,BOARD_HEIGHT);   // instantiate a new board
+        ArrayList<CellShip> hMap = horizontalMap(3);   // map that allocate free cells to spawn horizontal ships
+        ArrayList<CellShip> vMap = verticalMap(3);
+
        _cellsArray = newBoard.getBoard();     // get a reference to the board (inside grid object)
+
+        /*
+        pick a cell from an ArrayListMap (horizontal ou vertical)
+        if (shipPositionValidation is true - all cell need are available)
+        then: instantiate Ship and refresh the map (marking cell as occupied)
+        else: refresh the map with the headCell occupied and loop
+        */
+
+        CellShip currentCell = findCellShipByCoordinate(2,0,hMap);
+        if (currentCell.isEmpty() )
+        {
+            System.out.println("cell already empty");
+        }
+
+        if(shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
+        {
+            hMap.remove(currentCell);  //remove the cell from the map
+            System.out.println("true");
+        }
+        else
+        {
+            System.out.println("false");
+        }
+
+        currentCell = findCellShipByCoordinate(0,0,hMap);
+        if(shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
+        {
+            hMap.remove(currentCell);  //remove the cell from the map
+            System.out.println("true");
+        }
+        else
+        {
+            System.out.println("false");
+        }
 
         this.drawBoard();  // draw a board to the screen
 
     }
+
+    public ArrayList<CellShip> horizontalMap(int _shipSize)
+    {
+        //CellShip[][] hArrayMap = new CellShip[BOARD_WIDTH-_shipSize][BOARD_HEIGHT];
+        ArrayList<CellShip> hMap = new ArrayList<>();
+
+        for (int i = 0; i < (BOARD_WIDTH) ; i++) // discounts the places where a ship can't be instantiate
+        {
+            for (int j = 0; j < BOARD_HEIGHT; j++)
+            {
+                CellShip newCell = new CellShip(i, j);
+                hMap.add(newCell);
+                //(hArrayMap[i][j]) = newCell;
+            }
+        }
+        return hMap;
+    }
+
+    public CellShip findCellShipByCoordinate(int _x, int _y, ArrayList<CellShip> _cs)
+    {
+        //CellShip outputCell = new CellShip();
+        for (CellShip tempCell : _cs)
+        {
+            if ((tempCell.getX() == _x) && (tempCell.getY() == _y ))
+            {
+                return tempCell;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<CellShip> verticalMap(int _shipSize)
+    {
+        //CellShip[][] vArrayMap = new CellShip[BOARD_WIDTH][BOARD_HEIGHT-_shipSize];
+        ArrayList<CellShip> vMap = new ArrayList<>();
+
+        for (int i = 0; i < BOARD_WIDTH ; i++) // discounts the places where a ship can't be instantiate
+        {
+            for (int j = 0; j < (BOARD_HEIGHT); j++)
+            {
+                CellShip newCell = new CellShip(i, j);
+                vMap.add(newCell);
+                //(vArrayMap[i][j]) = newCell;
+            }
+        }
+        return vMap;
+    }
+
+    // decides if a headCell can receive a Ship
+    public boolean shipPositionValidation(ArrayList<CellShip> _map, int _x, int _y, int _size, Orientation _orientation)
+    {
+        CellShip currentCell = new CellShip(0,0);
+
+        if (_orientation.equals(Orientation.HORIZONTAL))
+        {
+            for (int i=0; i < _size ; i++)
+            {
+                currentCell = findCellShipByCoordinate(_x+i, _y, _map);
+                if (currentCell == null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else // vertical
+        {
+            for (int i=0; i < _size ; i++)
+            {
+                currentCell = findCellShipByCoordinate(_x, _y+i, _map);
+                if (currentCell == null)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
 
     public void drawBoard ()
     {
@@ -48,11 +167,11 @@ public class GameController {
         }
     }
 
-    public void getShot (int _shot) {
-        // TODO
-    }
-
-    public void refreshBoard(int _shot, boolean isHited) {
-        // TODO
-    }
+//    public void getShot (int _shot) {
+//        // TODO
+//    }
+//
+//    public void refreshBoard(int _shot, boolean isHited) {
+//        // TODO
+//    }
 }

@@ -18,12 +18,15 @@ public class Grid {
 
     //private ArrayList<CellShip> board;
     private CellShip[][] board = new CellShip[GRID_HEIGHT][GRID_WIDTH];
+    private ArrayList<Ship> shipList = new ArrayList<>();
 
     //TODO set minimum and maximum
 
+    // constructor
     public Grid(int _width, int _height) {
 
         CellShip[][] _tempArray = new CellShip[_width][_height];
+
 
         // instantiate all the cells and add them to a temp arraylist
         for (int i = 0  ; i < _width ; i++ )
@@ -32,6 +35,8 @@ public class Grid {
             {
                 CellShip newCell = new CellShip(i, j);  //each cell receives their own coordinate
                 _tempArray[i][j] = newCell;
+
+
             }
         }
 
@@ -40,7 +45,6 @@ public class Grid {
         this.setBoard(_tempArray);
     }
 
-    // constructor
 
 
     // getters and setters
