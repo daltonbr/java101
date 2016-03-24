@@ -1,6 +1,9 @@
 package com.dalton.aula03;
 
+import sun.jvm.hotspot.opto.Block_Array;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author dalton on 3/18/16.
@@ -14,6 +17,7 @@ public class GameController {
     final int BOARD_HEIGHT = 5;
     //ArrayList<CellShip> _cellsArray = new ArrayList<>(); // reference to cells in the board
     CellShip[][] _cellsArray = new CellShip[BOARD_HEIGHT][BOARD_WIDTH];
+    private Random randomGenerator;
 
     public void startGame()
     {
@@ -31,6 +35,10 @@ public class GameController {
         */
 
         CellShip currentCell = findCellShipByCoordinate(2,0,hMap);
+
+        currentCell = pickRandomCell(hMap);  //get a random cell from the map
+        System.out.println("celular sorteada: " + currentCell.getX() + currentCell.getY() );
+
         if (currentCell.isEmpty() )
         {
             System.out.println("cell already empty");
@@ -59,6 +67,16 @@ public class GameController {
 
         this.drawBoard();  // draw a board to the screen
 
+    }
+
+    public CellShip pickRandomCell(ArrayList<CellShip> _array)
+    {
+        randomGenerator = new Random();
+        int index = randomGenerator.nextInt(_array.size() );
+        //System.out.println("Size " + _array.size() + "sorteado" + index);
+
+        CellShip _cell = _array.get(index);
+        return _cell;
     }
 
     public ArrayList<CellShip> horizontalMap(int _shipSize)
