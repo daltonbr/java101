@@ -14,6 +14,8 @@ public class Grid {
     private int height;
     private ArrayList<Cell> board;
 
+    //TODO set minimum and maximum
+    
     // constructor
     public Grid(int _width, int _height) {
 

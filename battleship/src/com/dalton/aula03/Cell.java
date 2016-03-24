@@ -12,6 +12,7 @@ public class Cell {
     private int x;
     private int y;
     private boolean empty;
+    private boolean shot;   // cell was already shooted at ?
 
     // constructor
     public Cell(int _x, int _y)
@@ -19,7 +20,10 @@ public class Cell {
         this.setX( _x);
         this.setY( _y);
         this.setEmpty(true);
+        this.setShot(false);
+
     }
+
 
     // getters and setters
     public int getX() {
@@ -44,6 +48,14 @@ public class Cell {
 
     public void setEmpty(boolean empty) {
         this.empty = empty;
+    }
+
+    public boolean isShot() {
+        return shot;
+    }
+
+    public void setShot(boolean shot) {
+        this.shot = shot;
     }
 
 }
