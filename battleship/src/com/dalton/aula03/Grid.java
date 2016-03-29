@@ -18,7 +18,8 @@ public class Grid {
 
     //private ArrayList<CellShip> board;
     private CellShip[][] board = new CellShip[GRID_HEIGHT][GRID_WIDTH];
-    private ArrayList<Ship> shipList = new ArrayList<>();
+    private ArrayList<CellShip> cellArrayList = new ArrayList<>();
+    private ArrayList<Ship> shipArrayList = new ArrayList<>();
 
     //TODO set minimum and maximum
 
@@ -27,19 +28,16 @@ public class Grid {
 
         CellShip[][] _tempArray = new CellShip[_width][_height];
 
-
-        // instantiate all the cells and add them to a temp arraylist
+        // instantiate all the cells and add them to an ArrayList and a Matrix of cells
         for (int i = 0  ; i < _width ; i++ )
         {
             for (int j = 0 ; j < _height ; j++ )
             {
                 CellShip newCell = new CellShip(i, j);  //each cell receives their own coordinate
                 _tempArray[i][j] = newCell;
-
-
+                cellArrayList.add(newCell);
             }
         }
-
         this.setWidth(_width);
         this.setHeight(_height);
         this.setBoard(_tempArray);
@@ -72,29 +70,25 @@ public class Grid {
         this.board = board;
     }
 
-    //    }
-//        this.setBoard(_tempArray);
-//        this.setHeight(_height);
-//        this.setWidth(_width);
-//
-//        }
-//            }
-//                _tempArray.add(newCell);
-//                CellShip newCell = new CellShip(i, j);  //each cell receives their own coordinate
-//            {
-//            for (int j = 0 ; j < _height ; j++ )
-//        {
-//        for (int i = _width -1  ; i >= 0 ; i-- )
-//        // instantiate all the cells and add them to a temp arraylist
-//
-//        ArrayList<CellShip> _tempArray = new ArrayList<>();
-//
-//    public Grid(int _width, int _height) {
-//    public ArrayList<CellShip> getBoard() {
-//        return board;
-//    }
-//
-//    public void setBoard(ArrayList<CellShip> board) {
-//        this.board = board;
-//    }
+    public void addShip(Ship _ship)
+    {
+        this.shipArrayList.add(_ship);
+    }
+
+    public void addShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setEmpty(false);
+    }
+
+    public void removeShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setEmpty(true);
+    }
+
+    public void shotShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setShot(true);
+    }
+
+
 }

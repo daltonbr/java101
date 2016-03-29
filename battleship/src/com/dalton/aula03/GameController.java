@@ -9,14 +9,13 @@ import java.util.Random;
  * @author dalton on 3/18/16.
  */
 
-
 public class GameController {
 
     public enum Orientation {HORIZONTAL, VERTICAL }
     final int BOARD_WIDTH = 5;  //hardcoded for now
     final int BOARD_HEIGHT = 5;
     //ArrayList<CellShip> _cellsArray = new ArrayList<>(); // reference to cells in the board
-    CellShip[][] _cellsArray = new CellShip[BOARD_HEIGHT][BOARD_WIDTH];
+    CellShip[][] _cellsArray = new CellShip[BOARD_WIDTH][BOARD_HEIGHT];
     private Random randomGenerator;
 
     public void startGame()
@@ -34,42 +33,39 @@ public class GameController {
         else: refresh the map with the headCell occupied and loop
         */
 
-        CellShip currentCell = new CellShip();
-        currentCell = findCellShipByCoordinate(2,0,hMap);
+        CellShip currentCell = null;  //just instantiating a empty cell
+        int shipSize = 3;
+        int totalNumberOfShips = 3;
+        while ( totalNumberOfShips > 0 )  // looping till instantiate all the ships
+        {
+            currentCell = pickRandomCell(hMap);  //get a random cell from the map
+            //System.out.println("celular sorteada: " + currentCell.getX() + currentCell.getY() );
+            int currentX = currentCell.getX();
+            int currentY = currentCell.getY();
 
-        currentCell = pickRandomCell(hMap);  //get a random cell from the map
-        System.out.println("celular sorteada: " + currentCell.getX() + currentCell.getY() );
-
-        if (currentCell.isEmpty() )
-        {
-            System.out.println("cell already empty");
-        }
-
-        if (shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
-        {
-            hMap.remove(currentCell);  //remove the cell from the map
-            System.out.println("true");
-        }
-        else
-        {
-            System.out.println("false");
-        }
-
-        currentCell = findCellShipByCoordinate(0,0,hMap);
-        if(shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
-        {
-            Ship newShip = new Ship();  // instantiate a new ship in that cell
-            //newBoard
-            hMap.remove(currentCell);  //remove the cell from the map
-            System.out.println("true");
-        }
-        else
-        {
-            System.out.println("false");
+            if (shipPositionValidation(hMap, currentX, currentY, shipSize, Orientation.HORIZONTAL) )  //verifies all position of the new ship
+            {
+                // it is possible to alocate the entire ship
+                Ship newShip = new Ship();  //instantiate a new ship
+                for (int i = 0; i < shipSize ; i++)
+                {
+                    newBoard.addShipByCoordinate(currentX + i, currentY);       // set the cell to empty in main grid
+                    hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, hMap) ) ); // remove the occupied cell from the map
+                    newShip.addBodyCells(_cellsArray[currentX+i][currentY]);   // add a Cell to the ArrayList of a Ship
+                }
+                // counter of instantiated ships
+                totalNumberOfShips--;
+            }
+            else  // not possible to allocate the ship
+            {
+                hMap.remove (hMap.indexOf(findCellShipByCoordinate(currentX, currentY, hMap) ) ); // remove the occupied cell from the map
+            }
         }
 
         this.drawBoard();  // draw a board to the screen
     }
+
+    
 
     public CellShip pickRandomCell(ArrayList<CellShip> _array)
     {
@@ -131,13 +127,11 @@ public class GameController {
     // decides if a headCell can receive a Ship
     public boolean shipPositionValidation(ArrayList<CellShip> _map, int _x, int _y, int _size, Orientation _orientation)
     {
-        CellShip currentCell = new CellShip(0,0);
-
         if (_orientation.equals(Orientation.HORIZONTAL))
         {
             for (int i=0; i < _size ; i++)
             {
-                currentCell = findCellShipByCoordinate(_x+i, _y, _map);
+                CellShip currentCell = findCellShipByCoordinate(_x+i, _y, _map);
                 if (currentCell == null)
                 {
                     return false;
@@ -149,7 +143,7 @@ public class GameController {
         {
             for (int i=0; i < _size ; i++)
             {
-                currentCell = findCellShipByCoordinate(_x, _y+i, _map);
+                CellShip currentCell = findCellShipByCoordinate(_x, _y+i, _map);
                 if (currentCell == null)
                 {
                     return false;

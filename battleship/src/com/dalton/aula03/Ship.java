@@ -30,14 +30,14 @@ public class Ship {
     public Ship()
     {
         this.setDestroyed(false);
+        this.bodyCells = new ArrayList<>();
     }
 
     public enum Orientation {HORIZONTAL, VERTICAL }
 
     // class variables
-    private String name;                     // take out? why do we need the name?
     private boolean destroyed;               // register if the ship is destroyed or not
-    private int headPosition;                  // take out?
+    private int headPosition;                 // take out?
     private ArrayList<CellShip> bodyCells;   // record which CellShips the Ship is made of
 
 
@@ -47,14 +47,6 @@ public class Ship {
 //    }
 
     // getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isDestroyed(boolean b) {
         return destroyed;
     }
@@ -75,8 +67,8 @@ public class Ship {
         return bodyCells;
     }
 
-    public void setBodyCells(ArrayList<CellShip> bodyCells) {
-        this.bodyCells = bodyCells;
+    public void addBodyCells(CellShip _newCell) {
+        this.bodyCells.add(_newCell);
     }
 
 }
