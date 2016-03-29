@@ -34,7 +34,8 @@ public class GameController {
         else: refresh the map with the headCell occupied and loop
         */
 
-        CellShip currentCell = findCellShipByCoordinate(2,0,hMap);
+        CellShip currentCell = new CellShip();
+        currentCell = findCellShipByCoordinate(2,0,hMap);
 
         currentCell = pickRandomCell(hMap);  //get a random cell from the map
         System.out.println("celular sorteada: " + currentCell.getX() + currentCell.getY() );
@@ -44,7 +45,7 @@ public class GameController {
             System.out.println("cell already empty");
         }
 
-        if(shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
+        if (shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
         {
             hMap.remove(currentCell);  //remove the cell from the map
             System.out.println("true");
@@ -57,6 +58,8 @@ public class GameController {
         currentCell = findCellShipByCoordinate(0,0,hMap);
         if(shipPositionValidation(hMap, 2, 0, 3, Orientation.HORIZONTAL) )
         {
+            Ship newShip = new Ship();  // instantiate a new ship in that cell
+            //newBoard
             hMap.remove(currentCell);  //remove the cell from the map
             System.out.println("true");
         }
@@ -66,7 +69,6 @@ public class GameController {
         }
 
         this.drawBoard();  // draw a board to the screen
-
     }
 
     public CellShip pickRandomCell(ArrayList<CellShip> _array)
@@ -96,9 +98,9 @@ public class GameController {
         return hMap;
     }
 
+    // return a single Cell if founded in an ArrayList (by coordinates)
     public CellShip findCellShipByCoordinate(int _x, int _y, ArrayList<CellShip> _cs)
     {
-        //CellShip outputCell = new CellShip();
         for (CellShip tempCell : _cs)
         {
             if ((tempCell.getX() == _x) && (tempCell.getY() == _y ))
@@ -157,7 +159,12 @@ public class GameController {
         }
     }
 
-
+/*
+    'o' - water hitted
+    '.' - water
+    'S' - ship
+    'x' - Ship hitted
+ */
     public void drawBoard ()
     {
         System.out.println("Drawing Board: ");
@@ -173,13 +180,31 @@ public class GameController {
                     System.out.println("");
                     System.out.print(_line - 1);  // printing the label
                 }
-                System.out.print(" - " + _cellsArray[i][j].getX() + _cellsArray[i][j].getY());
+
+                // detecting the 4 states possibles in a cell
+                if ( _cellsArray[i][j].isEmpty() )
+                {
+                    if ( _cellsArray[i][j].isShot() )
+                    {
+                        System.out.print(" | o ");     //empty cell and hitted
+                    }
+                    System.out.print(" | . ");         //empty cell and NOT hitted
+                }
+                else
+                {
+                    if ( _cellsArray[i][j].isShot() )
+                    {
+                        System.out.print(" | x ");     //ship and hitted
+                    }
+                    System.out.print(" | S ");         //ship and NOT hitted
+                }
+                //System.out.print(" | " + _cellsArray[i][j].getX() + _cellsArray[i][j].getY());
                 _line = _cellsArray[i][j].getX();
             }
         }
         System.out.println();
         System.out.print(" ");
-        for (int i = 0; i < BOARD_WIDTH ; i++ )
+        for (int i = 0; i < BOARD_WIDTH ; i++ )  // more label
         {
             System.out.print(" -  " + i);
         }

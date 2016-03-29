@@ -12,7 +12,6 @@ public class CellShip extends Cell {
     public CellShip(int _x, int _y)
     {
         super ( _x, _y);  // superclass Cell
-        //this.setShip( _ship );
         this.setHit(false);
 
     }
