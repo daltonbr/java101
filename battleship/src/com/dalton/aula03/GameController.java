@@ -31,7 +31,7 @@ public class GameController {
 
     public void Update()
     {
-        int numberOfGuesses = 2;
+        int numberOfGuesses = 7;
         do
         {
 
@@ -86,6 +86,9 @@ public class GameController {
 
     }
 
+    /*
+        this method will instantiate the board and all ships in order to start the game
+    */
     public void startGame()
     {
 
@@ -98,13 +101,13 @@ public class GameController {
 
         CellShip currentCell;    //just instantiating a empty cell
         int shipSize = 3;
-        int totalNumberOfShips = 1;
+        int totalNumberOfShips = 2;
         int maxAttempts = totalNumberOfShips + 10;
         while ( totalNumberOfShips > 0 && maxAttempts > 0 )  // looping till instantiate all the ships (or cant place anymore ships)
         {
             if (hMap.isEmpty() )
             {
-                System.out.println("ERROR! No more cells available to instantiate Ships!");
+                System.out.println("ERROR! No more cells available to instantiate Horizontal Ships!");
                 return;
             }
             else
@@ -115,25 +118,65 @@ public class GameController {
             int currentX = currentCell.getX();
             int currentY = currentCell.getY();
 
+            // placing a ship in horizontal
             if (shipPositionValidation(hMap, currentX, currentY, shipSize, Orientation.HORIZONTAL) )  //verifies all position of the new ship
             {
-                // it is possible to alocate the entire ship
-                Ship newShip = new Ship();  //instantiate a new ship
-                newBoard.addShip(newShip);  // add a Ship to the Grid ArrayList<Ship> in order to control the ships in the board
+                // it is possible to allocate the entire ship
+                Ship newShipHorizontal = new Ship();  // instantiate a new ship
+                newBoard.addShip(newShipHorizontal);  // add a Ship to the Grid ArrayList<Ship> in order to control the ships in the board
 
                 for (int i = 0; i < shipSize ; i++)
                 {
                     newBoard.addShipByCoordinate(currentX + i, currentY);       // set the cell to empty in main grid
-                    hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, hMap) ) ); // remove the occupied cell from the map
-                    newShip.addCellToShip( _cellsArray[currentX+i][currentY] );   // add a Cell to the ArrayList of a Ship
-                    _cellsArray[currentX+i][currentY].setShip( newShip );
+                    hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, hMap) ) ); // remove the occupied cell from the hMap
+                    vMap.remove(vMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, vMap) ) ); // remove the occupied cell from the vMap
+                    newShipHorizontal.addCellToShip( _cellsArray[currentX+i][currentY] );   // add a Cell to the ArrayList of a Ship
+                    _cellsArray[currentX+i][currentY].setShip( newShipHorizontal );
+                }
+                // counter of instantiated ships
+                totalNumberOfShips--;
+
+            }
+            else  // not possible to allocate the ship
+            {
+                hMap.remove (hMap.indexOf(findCellShipByCoordinate(currentX, currentY, hMap) ) ); // remove the occupied cell from the map
+                maxAttempts--;  //to prevent an infinite loop
+            }
+
+            if (vMap.isEmpty() )
+            {
+                System.out.println("ERROR! No more cells available to instantiate Vertical Ships!");
+                return;
+            }
+            else
+            {
+                currentCell = pickRandomCell(vMap);  //get a random cell from the map}
+            }
+
+            currentX = currentCell.getX();
+            currentY = currentCell.getY();
+
+            // placing a ship in vertical
+            if (shipPositionValidation(vMap, currentX, currentY, shipSize, Orientation.VERTICAL) )  //verifies all position of the new ship
+            {
+                // it is possible to allocate the entire ship
+                Ship newShipVertical = new Ship();  // instantiate a new ship
+                newBoard.addShip(newShipVertical);  // add a Ship to the Grid ArrayList<Ship> in order to control the ships in the board
+
+                for (int i = 0; i < shipSize ; i++)
+                {
+                    newBoard.addShipByCoordinate(currentX, currentY + i);       // set the cell to empty in main grid
+                    hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX, currentY + i, hMap) ) ); // remove the occupied cell from the hMap
+                    vMap.remove(vMap.indexOf( findCellShipByCoordinate(currentX, currentY + i, vMap) ) ); // remove the occupied cell from the vMap
+                    newShipVertical.addCellToShip( _cellsArray[currentX][currentY+i] );   // add a Cell to the ArrayList of a Ship
+                    _cellsArray[currentX][currentY+i].setShip( newShipVertical );
                 }
                 // counter of instantiated ships
                 totalNumberOfShips--;
             }
             else  // not possible to allocate the ship
             {
-                hMap.remove (hMap.indexOf(findCellShipByCoordinate(currentX, currentY, hMap) ) ); // remove the occupied cell from the map
+                vMap.remove (vMap.indexOf(findCellShipByCoordinate(currentX, currentY, vMap) ) ); // remove the occupied cell from the map
                 maxAttempts--;  //to prevent an infinite loop
             }
         }
@@ -275,6 +318,7 @@ public class GameController {
     public void drawBoard ()
     {
         System.out.println();
+        System.out.println("There is " + newBoard.getShipArrayList().size() + " ship(s) remaining.");
         int _line = BOARD_HEIGHT - 1;
         System.out.print(_line);  // printing the label
 
@@ -308,7 +352,7 @@ public class GameController {
                     }
                     else
                     {
-                        System.out.print(" | S ");         //ship and NOT hit
+                        System.out.print(" | . ");     //ship and NOT hit   // System.out.print(" | S ");     //ship and NOT hit
                     }
                 }
                 //System.out.print(" | " + _cellsArray[i][j].getX() + _cellsArray[i][j].getY());
@@ -321,13 +365,8 @@ public class GameController {
         {
             System.out.print(" -  " + i);
         }
+
     }
 
-//    public void getShot (int _shot) {
-//        // TODO
-//    }
-//
-//    public void refreshBoard(int _shot, boolean isHited) {
-//        // TODO
-//    }
+
 }
