@@ -10,23 +10,7 @@ public class Ship {
      * destroyed is always setted to false at start
      */
 
-    // constructor 1
-    public Ship(int _headPosition, Orientation _orientation)
-    {
-        if (_orientation.equals(Orientation.HORIZONTAL))
-        {
-
-
-        }
-        else
-        {
-
-        }
-
-        this.setHeadPosition( _headPosition);
-        this.setDestroyed(false);
-    }
-    // constructor 2
+    // constructor
     public Ship()
     {
         this.setDestroyed(false);
@@ -37,14 +21,7 @@ public class Ship {
 
     // class variables
     private boolean destroyed;               // register if the ship is destroyed or not
-    private int headPosition;                 // take out?
     private ArrayList<CellShip> bodyCells;   // record which CellShips the Ship is made of
-
-
-//    public void attackShip(CellShip _cellShip )
-//    {
-//        this.getBodyCells().
-//    }
 
     // getters and setters
     public boolean isDestroyed(boolean b) {
@@ -55,20 +32,18 @@ public class Ship {
         this.destroyed = destroyed;
     }
 
-    public int getHeadPosition() {
-        return headPosition;
-    }
-
-    public void setHeadPosition(int _headPosition) {
-        this.headPosition = _headPosition;
-    }
-
     public ArrayList<CellShip> getBodyCells() {
         return bodyCells;
     }
 
-    public void addBodyCells(CellShip _newCell) {
+    public void addCellToShip(CellShip _newCell) {
         this.bodyCells.add(_newCell);
+    }
+
+    public void removeCellFromShip(CellShip _cellShip)
+    {
+        this.bodyCells.remove(_cellShip);                   // removing it
+        if ( this.bodyCells.isEmpty() ) this.setDestroyed(true);
     }
 
 }

@@ -22,6 +22,8 @@ public class Grid {
 
     private ArrayList<Ship> shipArrayList = new ArrayList<>();
 
+    private boolean gameOver;
+
     //TODO set minimum and maximum
 
     // constructor
@@ -42,6 +44,7 @@ public class Grid {
         this.setWidth(_width);
         this.setHeight(_height);
         this.setBoard(_tempArray);
+        this.setGameOver(false);
     }
 
     // getters and setters
@@ -53,14 +56,22 @@ public class Grid {
         this.width = _width;
     }
 
-
-
     public int getHeight() {
         return height;
     }
 
+
+
     public void setHeight(int _height) {
         this.height = _height;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 
     public CellShip[][] getBoard() {
@@ -105,6 +116,12 @@ public class Grid {
 
     public void setCellArrayList(ArrayList<CellShip> cellArrayList) {
         this.cellArrayList = cellArrayList;
+    }
+
+    public void removeShipFromGrid(Ship _ship)
+    {
+        this.shipArrayList.remove(_ship);
+        if ( this.shipArrayList.isEmpty() ) this.setGameOver(true);
     }
 
 

@@ -3,9 +3,7 @@ package com.dalton.aula03;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.io.Console;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.util.Scanner;
 
 public class GameController {
@@ -36,8 +34,6 @@ public class GameController {
         int numberOfGuesses = 2;
         do
         {
-//            System.out.println();
-//            System.out.print("Please make a guess (in format x-y): ");
 
             CellShip userGuessCell = null;
 
@@ -63,14 +59,25 @@ public class GameController {
                 System.out.println();
                 System.out.println("You hit a ship!" + " Guesses remaining: " + numberOfGuesses);
                 userGuessCell.setHit(true);
-                //verify if the ship is completely hit
+
+                Ship currentShip = userGuessCell.getShip();  // reference to the ship attached to the userGuestCell
+                currentShip.removeCellFromShip(userGuessCell);  // remove a hit cell from their ship
+
+                //verify if the ship is destroyed           // when the ship ArrayList is empty, the game is over!
+                if ( currentShip.isDestroyed(true) )
+                {
+                    newBoard.removeShipFromGrid(currentShip);    // remove the ship from the ship ArrayList
+                    System.out.println();
+                    System.out.println("You destroyed a ship!");
+                    if ( newBoard.isGameOver() )
+                    {
+                        System.out.println("You WIN! Congratulation!");
+                        return;
+                    }
+                }
             }
             this.drawBoard();
 
-            if (_shipArray.isEmpty() )
-            {
-                System.out.println("You WIN! Congratulation!");
-            }
 
         } while (numberOfGuesses > 0);  //checking end of game
 
@@ -91,7 +98,7 @@ public class GameController {
 
         CellShip currentCell;    //just instantiating a empty cell
         int shipSize = 3;
-        int totalNumberOfShips = 3;
+        int totalNumberOfShips = 1;
         int maxAttempts = totalNumberOfShips + 10;
         while ( totalNumberOfShips > 0 && maxAttempts > 0 )  // looping till instantiate all the ships (or cant place anymore ships)
         {
@@ -118,7 +125,8 @@ public class GameController {
                 {
                     newBoard.addShipByCoordinate(currentX + i, currentY);       // set the cell to empty in main grid
                     hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, hMap) ) ); // remove the occupied cell from the map
-                    newShip.addBodyCells(_cellsArray[currentX+i][currentY]);   // add a Cell to the ArrayList of a Ship
+                    newShip.addCellToShip( _cellsArray[currentX+i][currentY] );   // add a Cell to the ArrayList of a Ship
+                    _cellsArray[currentX+i][currentY].setShip( newShip );
                 }
                 // counter of instantiated ships
                 totalNumberOfShips--;
@@ -259,10 +267,10 @@ public class GameController {
     }
 
 /*
-    'o' - water hitted
+    'o' - water hit
     '.' - water
     'S' - ship
-    'x' - Ship hitted
+    'x' - Ship hit
  */
     public void drawBoard ()
     {
@@ -296,11 +304,11 @@ public class GameController {
                 {
                     if ( _cellsArray[j][i].isShot() )
                     {
-                        System.out.print(" | x ");     //ship and hited
+                        System.out.print(" | x ");     //ship and hit
                     }
                     else
                     {
-                        System.out.print(" | S ");         //ship and NOT hited
+                        System.out.print(" | S ");         //ship and NOT hit
                     }
                 }
                 //System.out.print(" | " + _cellsArray[i][j].getX() + _cellsArray[i][j].getY());

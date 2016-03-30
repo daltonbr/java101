@@ -4,6 +4,7 @@
     <list default="true" id="5f28cf63-c0bc-4462-9fda-e8728f280cdc" name="Default" comment="validation on cells to instantiate a new Ship and MAPs to record used positions &#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/battleship/com/dalton/aula03/GameController.class" afterPath="$PROJECT_DIR$/out/production/battleship/com/dalton/aula03/GameController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/dalton/aula03/CellShip.java" afterPath="$PROJECT_DIR$/src/com/dalton/aula03/CellShip.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/dalton/aula03/GameController.java" afterPath="$PROJECT_DIR$/src/com/dalton/aula03/GameController.java" />
     </list>
     <ignored path="battleship.iws" />

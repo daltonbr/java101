@@ -1,9 +1,30 @@
 package com.dalton.aula03;
 
+import java.util.ArrayList;
+
 /**
  * Created by dalton on 3/23/16.
  */
 public class CellShip extends Cell {
+
+
+    private Ship ship;
+
+    private boolean hit;
+
+//    // return a single Cell if founded in an ArrayList (by coordinates)
+//    public CellShip findCellShipByCoordinate(int _x, int _y, ArrayList<CellShip> _cs)
+//    {
+//        for (CellShip tempCell : _cs)
+//        {
+//            if ((tempCell.getX() == _x) && (tempCell.getY() == _y ))
+//            {
+//                return tempCell;
+//            }
+//        }
+//        return null;
+//    }
+
 
     public CellShip()
     {
@@ -27,8 +48,6 @@ public class CellShip extends Cell {
         this.ship = _ship;
     }
 
-    private Ship ship;
-
     public boolean isHit() {
         return hit;
     }
@@ -36,8 +55,6 @@ public class CellShip extends Cell {
     public void setHit(boolean hit) {
         this.hit = hit;
     }
-
-    private boolean hit;
 
 
 }
