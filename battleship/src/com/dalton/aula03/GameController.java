@@ -101,7 +101,7 @@ public class GameController {
 
         CellShip currentCell;    //just instantiating a empty cell
         int shipSize = 3;
-        int totalNumberOfShips = 2;
+        int totalNumberOfShips = 3;
         int maxAttempts = totalNumberOfShips + 10;
         while ( totalNumberOfShips > 0 && maxAttempts > 0 )  // looping till instantiate all the ships (or cant place anymore ships)
         {
@@ -128,8 +128,12 @@ public class GameController {
                 for (int i = 0; i < shipSize ; i++)
                 {
                     newBoard.addShipByCoordinate(currentX + i, currentY);       // set the cell to empty in main grid
+
+                    CellShip tempCell = ( findCellShipByCoordinate(currentX + i, currentY, vMap) );
+                    if ( tempCell  != null ) vMap.remove(vMap.indexOf( tempCell ) ); // remove the occupied cell from the vMap
+                    //vMap.remove(vMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, vMap) ) ); // remove the occupied cell from the vMap
+
                     hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, hMap) ) ); // remove the occupied cell from the hMap
-                    vMap.remove(vMap.indexOf( findCellShipByCoordinate(currentX+i, currentY, vMap) ) ); // remove the occupied cell from the vMap
                     newShipHorizontal.addCellToShip( _cellsArray[currentX+i][currentY] );   // add a Cell to the ArrayList of a Ship
                     _cellsArray[currentX+i][currentY].setShip( newShipHorizontal );
                 }
@@ -166,7 +170,10 @@ public class GameController {
                 for (int i = 0; i < shipSize ; i++)
                 {
                     newBoard.addShipByCoordinate(currentX, currentY + i);       // set the cell to empty in main grid
-                    hMap.remove(hMap.indexOf( findCellShipByCoordinate(currentX, currentY + i, hMap) ) ); // remove the occupied cell from the hMap
+
+                    CellShip tempCell = ( findCellShipByCoordinate(currentX, currentY + i, hMap) );
+                    if ( tempCell  != null ) hMap.remove(hMap.indexOf( tempCell ) ); // remove the occupied cell from the hMap
+
                     vMap.remove(vMap.indexOf( findCellShipByCoordinate(currentX, currentY + i, vMap) ) ); // remove the occupied cell from the vMap
                     newShipVertical.addCellToShip( _cellsArray[currentX][currentY+i] );   // add a Cell to the ArrayList of a Ship
                     _cellsArray[currentX][currentY+i].setShip( newShipVertical );
