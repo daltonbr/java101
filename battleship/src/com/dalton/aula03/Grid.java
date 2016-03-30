@@ -16,9 +16,10 @@ public class Grid {
     private int width;
     private int height;
 
-    //private ArrayList<CellShip> board;
     private CellShip[][] board = new CellShip[GRID_HEIGHT][GRID_WIDTH];
+
     private ArrayList<CellShip> cellArrayList = new ArrayList<>();
+
     private ArrayList<Ship> shipArrayList = new ArrayList<>();
 
     //TODO set minimum and maximum
@@ -43,8 +44,6 @@ public class Grid {
         this.setBoard(_tempArray);
     }
 
-
-
     // getters and setters
     public int getWidth() {
         return width;
@@ -53,6 +52,8 @@ public class Grid {
     public void setWidth(int _width) {
         this.width = _width;
     }
+
+
 
     public int getHeight() {
         return height;
@@ -88,6 +89,22 @@ public class Grid {
     public void shotShipByCoordinate(int _x, int _y)
     {
         this.board[_x][_y].setShot(true);
+    }
+
+    public ArrayList<Ship> getShipArrayList() {
+        return shipArrayList;
+    }
+
+    public void setShipArrayList(ArrayList<Ship> shipArrayList) {
+        this.shipArrayList = shipArrayList;
+    }
+
+    public ArrayList<CellShip> getCellArrayList() {
+        return cellArrayList;
+    }
+
+    public void setCellArrayList(ArrayList<CellShip> cellArrayList) {
+        this.cellArrayList = cellArrayList;
     }
 
 
