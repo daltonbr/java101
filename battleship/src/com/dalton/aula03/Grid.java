@@ -10,30 +10,41 @@ import java.util.ArrayList;
 
 public class Grid {
 
+    final int GRID_WIDTH = 5;  //hardcoded for now
+    final int GRID_HEIGHT = 5;
+
     private int width;
     private int height;
-    private ArrayList<Cell> board;
+
+    private CellShip[][] board = new CellShip[GRID_HEIGHT][GRID_WIDTH];
+
+    private ArrayList<CellShip> cellArrayList = new ArrayList<>();
+
+    private ArrayList<Ship> shipArrayList = new ArrayList<>();
+
+    private boolean gameOver;
 
     //TODO set minimum and maximum
-    
+
     // constructor
     public Grid(int _width, int _height) {
 
-        ArrayList<Cell> _tempArray = new ArrayList<>();
+        CellShip[][] _tempArray = new CellShip[_width][_height];
 
-        // instantiate all the cells and add them to a temp arraylist
-        for (int i = _width -1  ; i >= 0 ; i-- )
+        // instantiate all the cells and add them to an ArrayList and a Matrix of cells
+        for (int i = 0  ; i < _width ; i++ )
         {
             for (int j = 0 ; j < _height ; j++ )
             {
-                Cell newCell = new Cell(i, j);  //each cell receives their own coordinate
-                _tempArray.add(newCell);
+                CellShip newCell = new CellShip(i, j);  //each cell receives their own coordinate
+                _tempArray[i][j] = newCell;
+                cellArrayList.add(newCell);
             }
         }
-
         this.setWidth(_width);
         this.setHeight(_height);
         this.setBoard(_tempArray);
+        this.setGameOver(false);
     }
 
     // getters and setters
@@ -49,15 +60,69 @@ public class Grid {
         return height;
     }
 
+
+
     public void setHeight(int _height) {
         this.height = _height;
     }
 
-    public ArrayList<Cell> getBoard() {
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public CellShip[][] getBoard() {
         return board;
     }
 
-    public void setBoard(ArrayList<Cell> board) {
+    public void setBoard(CellShip[][] board) {
         this.board = board;
     }
+
+    public void addShip(Ship _ship)
+    {
+        this.shipArrayList.add(_ship);
+    }
+
+    public void addShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setEmpty(false);
+    }
+
+    public void removeShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setEmpty(true);
+    }
+
+    public void shotShipByCoordinate(int _x, int _y)
+    {
+        this.board[_x][_y].setShot(true);
+    }
+
+    public ArrayList<Ship> getShipArrayList() {
+        return shipArrayList;
+    }
+
+    public void setShipArrayList(ArrayList<Ship> shipArrayList) {
+        this.shipArrayList = shipArrayList;
+    }
+
+    public ArrayList<CellShip> getCellArrayList() {
+        return cellArrayList;
+    }
+
+    public void setCellArrayList(ArrayList<CellShip> cellArrayList) {
+        this.cellArrayList = cellArrayList;
+    }
+
+    public void removeShipFromGrid(Ship _ship)
+    {
+        this.shipArrayList.remove(_ship);
+        if ( this.shipArrayList.isEmpty() ) this.setGameOver(true);
+    }
+
+
 }

@@ -1,40 +1,29 @@
 package com.dalton.aula03;
 
-/**
- * Created by dalton on 3/18/16.
- */
-
+import java.util.ArrayList;
 
 public class Ship {
+
     /**
      * @author Dalton Lima github @daltonbr - sacinopatinete@gmail.com
-     * @param _name - The name of the ship
-     * @param _position - an array with stores the ship location
      *
      * destroyed is always setted to false at start
      */
 
-
-    public Ship(String _name, int[] _position)
+    // constructor
+    public Ship()
     {
-        this.setName( _name);
-        this.setPosition( _position);
         this.setDestroyed(false);
-    }
-    private String name;
-    private boolean destroyed;
-    private int[] position;
-
-    // how to register the cells that the ship stands
-
-    public String getName() {
-        return name;
+        this.bodyCells = new ArrayList<>();
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public enum Orientation {HORIZONTAL, VERTICAL }
 
+    // class variables
+    private boolean destroyed;               // register if the ship is destroyed or not
+    private ArrayList<CellShip> bodyCells;   // record which CellShips the Ship is made of
+
+    // getters and setters
     public boolean isDestroyed(boolean b) {
         return destroyed;
     }
@@ -43,12 +32,18 @@ public class Ship {
         this.destroyed = destroyed;
     }
 
-    public int[] getPosition() {
-        return position;
+    public ArrayList<CellShip> getBodyCells() {
+        return bodyCells;
     }
 
-    public void setPosition(int[] _position) {
-        this.position = _position;
+    public void addCellToShip(CellShip _newCell) {
+        this.bodyCells.add(_newCell);
+    }
+
+    public void removeCellFromShip(CellShip _cellShip)
+    {
+        this.bodyCells.remove(_cellShip);                   // removing it
+        if ( this.bodyCells.isEmpty() ) this.setDestroyed(true);
     }
 
 }
