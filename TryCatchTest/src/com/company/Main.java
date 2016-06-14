@@ -11,6 +11,11 @@ public class Main {
         //m1();
         //m2();
         //aritmeticaError();
+        try {
+            aritmeticaError2(3.0f, 0.0f);
+        } catch (DivisionByZeroException e ) {
+            System.out.println(e.getMessage());
+        }
         //castClassError();
         //fileReaderExceptionTest();
         try {
@@ -18,10 +23,10 @@ public class Main {
         } catch (IOException ioE) {System.out.println("IO ERROR tratado no main()");
         StackTraceElement[] stack =  ioE.getStackTrace();
 
-            for (StackTraceElement elem : stack) {
-                System.out.println(elem.getLineNumber() +
-                                    elem.getMethodName());
-            }
+//            for (StackTraceElement elem : stack) {
+//                System.out.println(elem.getLineNumber() +
+//                                    elem.getMethodName());
+//            }
 
         }
         System.out.println("Fim Main");
@@ -54,6 +59,14 @@ public class Main {
 //        catch (Exception e) {System.out.println("Erro Geral");}
 //
 //    }
+
+    public static float aritmeticaError2(float a, float b) {
+        if (b == 0) {
+            throw new DivisionByZeroException();
+        } else {
+            return (a / b);
+        }
+    }
 
 //    public static void castClassError() {
 //        int a = (ArrayList<String>)3;
