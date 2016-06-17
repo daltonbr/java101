@@ -20,15 +20,14 @@ public class Conexao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //Class.forName("org.postgresql.Driver");
-            DriverManager.getConnection(urlBD, usuario, senha);
+            conexao = DriverManager.getConnection(urlBD, usuario, senha);
         } catch (ClassNotFoundException e) {
             System.out.println("Driver de conexao MYSQL nao encontrado!");
             e.printStackTrace();
         } catch (SQLException e) {
             System.out.println("Nao foi possivel conectar ao Banco de Dados");
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             return conexao;
         }
     }
