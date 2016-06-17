@@ -16,14 +16,15 @@ public class UniversidadeDAO implements IUniversidade {
 
     @Override
     public void insereUniversidade(Universidade uni) {
-        String query = "Insert into tb_universidades (nome, sigla, endereco, RA141152257)"
-                + " values (?, ?, ?, ?)";
+        String query = "Insert into tb_universidades (nome, endereco, cidade, sigla, RA141152257)"
+                + " values (?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = Conexao.getConnection().prepareStatement(query);
             stmt.setString(1, uni.getNomeUni());
-            stmt.setString(2, uni.getSiglaUni());
-            stmt.setString(3, uni.getEnderecoUni());
-            stmt.setString(4, uni.getMeu141152257());
+            stmt.setString(2, uni.getEnderecoUni());
+            stmt.setString(3, uni.getCidadeUni());
+            stmt.setString(4, uni.getSiglaUni());
+            stmt.setString(5, uni.getMeu141152257());
 
             stmt.executeUpdate();  // insert, update e delete
             stmt.close();
@@ -51,15 +52,16 @@ public class UniversidadeDAO implements IUniversidade {
 
     @Override
     public void atualizaUniversidade(Universidade uni) {
-        String query = "UPDATE tb_universidades SET nome = ?, sigla = ?, endereco = ?, RA141152257 = ?"
+        String query = "UPDATE tb_universidades SET nome = ?, endereco = ?, cidade = ?, sigla = ?, RA141152257 = ?"
                 + " WHERE id = (?)";
         try {
             PreparedStatement stmt = Conexao.getConnection().prepareStatement(query);
             stmt.setString(1, uni.getNomeUni());
-            stmt.setString(2, uni.getSiglaUni());
-            stmt.setString(3, uni.getEnderecoUni());
-            stmt.setString(4, uni.getMeu141152257());
-            stmt.setInt(5, uni.getIdUni());
+            stmt.setString(2, uni.getEnderecoUni());
+            stmt.setString(3, uni.getCidadeUni());
+            stmt.setString(4, uni.getSiglaUni());
+            stmt.setString(5, uni.getMeu141152257());
+            stmt.setInt(6, uni.getIdUni());
 
             stmt.executeUpdate();  // insert, update e delete
             stmt.close();

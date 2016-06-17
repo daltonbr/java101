@@ -14,7 +14,7 @@ public class Conexao {
         Connection conexao = null;
         String usuario = "root";
         String senha = "0880";
-        String urlBD = "jdbc:mysql://localhost:3306/bd_universidades";
+        String urlBD = "jdbc:mysql://localhost:3306/bd_universidades?autoReconnect=true&useSSL=false";
 
         // carregar dinamicamente o driver do mysql
         try {

@@ -9,11 +9,12 @@ import br.unesp.rc.lcp.universidades.dao.UniversidadeDAO;
  * Dalton Lima         github.com/daltonbr
  */
 public class UniversidadeController {
-    public void insereUniversidade(String nome, String sigla, String endereco, String meuRA) {
+    public void insereUniversidade(String nome, String endereco, String cidade, String sigla, String meuRA) {
         Universidade uni = new Universidade();
         uni.setNomeUni(nome);
-        uni.setSiglaUni(sigla);
         uni.setEnderecoUni(endereco);
+        uni.setCidadeUni(cidade);
+        uni.setSiglaUni(sigla);
         uni.setMeu141152257(meuRA);
 
         IUniversidade uniDao = new UniversidadeDAO();

@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class AulaJDBC_noturno {
     public static void main (String[] args) {
 
-//        UniversidadeView frame  = new UniversidadeView();
+//        UniversidadeView gui  = new UniversidadeView();
 //        JFrame frame = new JFrame();
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        frame.getContentPane().add(gui);
