@@ -4,6 +4,9 @@ import br.unesp.rc.lcp.universidades.beans.Universidade;
 import br.unesp.rc.lcp.universidades.dao.IUniversidade;
 import br.unesp.rc.lcp.universidades.dao.UniversidadeDAO;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 /**
  * Created on 6/16/16 by:
  * Dalton Lima         github.com/daltonbr
@@ -20,4 +23,17 @@ public class UniversidadeController {
         IUniversidade uniDao = new UniversidadeDAO();
         uniDao.insereUniversidade(uni);
     }
+
+    public void recuperaUniversidade () {
+
+    }
+
+    public DefaultComboBoxModel getCidadeComboBoxModel() {
+        IUniversidade uniDao = new UniversidadeDAO();
+        ArrayList<String> cidadeArray = uniDao.getCidadeArray();
+        DefaultComboBoxModel model = new DefaultComboBoxModel(cidadeArray.toArray());
+        return model;
+    }
+
+
 }
